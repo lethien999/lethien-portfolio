@@ -44,34 +44,45 @@ const roadmapData = [
 
 const statusConfig = {
     current: {
-        border: 'border-sky-400/60',
-        bg: 'bg-[#111827]',
-        dot: 'bg-sky-400',
-        badge: 'bg-sky-400/10 text-sky-400 border border-sky-400/30',
-        phaseColor: 'text-sky-400',
+        border: 'border-purple-500/40',
+        bg: 'bg-zinc-900/80',
+        dot: 'bg-purple-400',
+        badge: 'bg-purple-500/10 text-purple-400 border border-purple-500/30',
+        phaseColor: 'text-purple-400',
         showBadge: true,
+        glow: 'shadow-lg shadow-purple-500/5',
     },
     next: {
-        border: 'border-slate-600',
-        bg: 'bg-[#111827]',
-        dot: 'bg-slate-500',
-        badge: 'bg-slate-800 text-gray-400 border border-slate-700',
-        phaseColor: 'text-gray-400',
+        border: 'border-blue-500/20',
+        bg: 'bg-zinc-900/60',
+        dot: 'bg-blue-400',
+        badge: 'bg-blue-500/10 text-blue-400 border border-blue-500/20',
+        phaseColor: 'text-blue-400',
         showBadge: false,
+        glow: '',
     },
     future: {
-        border: 'border-slate-700',
-        bg: 'bg-[#111827]/70',
-        dot: 'bg-slate-600',
-        badge: 'bg-slate-800/60 text-gray-500 border border-slate-700/60',
-        phaseColor: 'text-gray-500',
+        border: 'border-zinc-800',
+        bg: 'bg-zinc-900/40',
+        dot: 'bg-zinc-600',
+        badge: 'bg-zinc-800 text-zinc-500 border border-zinc-700',
+        phaseColor: 'text-zinc-500',
         showBadge: false,
+        glow: '',
     },
 };
 
 export default function RoadmapSection() {
     return (
-        <SectionWrapper id="roadmap" title="Roadmap">
+        <SectionWrapper id="roadmap" title="Career Roadmap">
+            <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-text-secondary text-center max-w-2xl mx-auto mb-12"
+            >
+                Lộ trình phát triển sự nghiệp với mục tiêu rõ ràng và từng bước cụ thể.
+            </motion.p>
             <div className="max-w-3xl mx-auto">
                 <div className="space-y-6">
                     {roadmapData.map((item, index) => {
@@ -85,7 +96,7 @@ export default function RoadmapSection() {
                                 transition={{ duration: 0.5, delay: index * 0.15 }}
                             >
                                 <div
-                                    className={`rounded-xl border ${cfg.border} ${cfg.bg} p-6 transition-all duration-300`}
+                                    className={`rounded-xl border ${cfg.border} ${cfg.bg} ${cfg.glow} p-6 transition-all duration-300 hover:border-purple-500/30`}
                                 >
                                     <div className="flex items-start justify-between mb-4 gap-4">
                                         <div>
@@ -94,31 +105,32 @@ export default function RoadmapSection() {
                                             >
                                                 {item.phase}
                                             </span>
-                                            <h3 className="text-base font-semibold text-text-primary mt-0.5">
+                                            <h3 className="text-lg font-semibold text-text-primary mt-1">
                                                 {item.title}
                                             </h3>
                                         </div>
                                         {cfg.showBadge && (
-                                            <span className={`shrink-0 px-2.5 py-1 text-[10px] font-medium rounded-full ${cfg.badge}`}>
+                                            <span className={`shrink-0 px-3 py-1 text-[10px] font-medium rounded-full ${cfg.badge} flex items-center gap-1.5`}>
+                                                <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" />
                                                 IN PROGRESS
                                             </span>
                                         )}
                                     </div>
 
-                                    <ul className="space-y-2 mb-4">
+                                    <ul className="space-y-2.5 mb-5">
                                         {item.items.map((point) => (
                                             <li
                                                 key={point}
-                                                className="text-sm text-text-secondary flex items-start gap-2.5"
+                                                className="text-sm text-text-secondary flex items-start gap-3"
                                             >
-                                                <span className={`mt-2 shrink-0 w-1 h-1 rounded-full ${cfg.dot}`} />
+                                                <span className={`mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                                                 {point}
                                             </li>
                                         ))}
                                     </ul>
 
                                     <div
-                                        className={`inline-block px-3 py-1 text-[11px] rounded-md ${cfg.badge}`}
+                                        className={`inline-block px-3 py-1.5 text-xs rounded-lg ${cfg.badge}`}
                                     >
                                         {item.highlight}
                                     </div>
