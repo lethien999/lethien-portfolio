@@ -29,12 +29,7 @@ export default function Header() {
                 : 'bg-transparent'
         }`}>
             <nav className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-4 flex items-center justify-between">
-                <a
-                    href="#"
-                    className="font-bold text-lg tracking-tight"
-                >
-                    <span className="gradient-text">LT</span>
-                </a>
+                <div className="w-8" /> {/* Spacer */}
 
                 <ul className="hidden md:flex items-center gap-8">
                     {navLinks.map((link) => (
