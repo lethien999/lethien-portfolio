@@ -94,14 +94,13 @@ export default function ContactSection() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-text-secondary text-center mb-12 max-w-2xl mx-auto"
+                    className="text-white mix-blend-difference text-center mb-12 max-w-2xl mx-auto"
                 >
                     Mình luôn sẵn sàng kết nối với các developer khác, thảo luận về
                     tech, hoặc cơ hội hợp tác. Đừng ngại liên hệ!
                 </motion.p>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Left: Contact Links */}
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -119,16 +118,16 @@ export default function ContactSection() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                                className="flex items-center gap-4 p-4 rounded-lg bg-zinc-900/50 border border-zinc-800 hover:border-purple-500/30 transition-all duration-300 group"
+                                className="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/50 border border-white/12 hover:border-[#ff6a3d]/35 transition-all duration-300 group"
                             >
-                                <span className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500/10 to-blue-500/10 border border-zinc-700 flex items-center justify-center text-purple-400 group-hover:text-purple-300 transition-colors">
+                                <span className="w-10 h-10 rounded-lg bg-white/5 border border-white/15 flex items-center justify-center text-[#ff9f7f] group-hover:text-[#ff6a3d] transition-colors">
                                     {link.icon}
                                 </span>
                                 <div>
                                     <span className="text-xs text-zinc-500 uppercase tracking-widest">
                                         {link.label}
                                     </span>
-                                    <p className="text-sm text-text-secondary group-hover:text-purple-400 transition-colors duration-200">
+                                    <p className="text-sm text-zinc-300 group-hover:text-[#ff9f7f] transition-colors duration-200">
                                         {link.value}
                                     </p>
                                 </div>
@@ -142,7 +141,7 @@ export default function ContactSection() {
                             whileInView={{ opacity: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.4 }}
-                            className="flex items-center justify-center gap-2 w-full p-4 mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium text-sm rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-purple-500/20"
+                            className="flex items-center justify-center gap-2 w-full p-4 mt-4 bg-[#f5efe5] text-[#121212] font-semibold text-sm rounded-full hover:bg-[#ff6a3d] transition-all duration-300"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -151,7 +150,6 @@ export default function ContactSection() {
                         </motion.a>
                     </motion.div>
 
-                    {/* Right: Form */}
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -159,9 +157,9 @@ export default function ContactSection() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                     >
                         <form onSubmit={handleSubmit} className="space-y-4">
-                            <div className="p-6 rounded-xl bg-zinc-900/50 border border-zinc-800">
-                                <h3 className="text-lg font-semibold text-text-primary mb-4 flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                            <div className="p-6 rounded-[0_2rem_0_2rem] bg-zinc-900/55 border border-white/12">
+                                <h3 className="text-lg font-display font-semibold text-[#f7f2e8] mb-4 flex items-center gap-2">
+                                    <span className="w-2 h-2 bg-[#2a9d8f] rounded-full animate-pulse" />
                                     Send a Message
                                 </h3>
                                 <div className="space-y-4">
@@ -180,7 +178,7 @@ export default function ContactSection() {
                                             onChange={(e) =>
                                                 setFormData({ ...formData, name: e.target.value })
                                             }
-                                            className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-text-primary placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition-colors"
+                                            className="w-full bg-zinc-800/40 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-[#ff6a3d] transition-colors"
                                             placeholder="Your name"
                                         />
                                     </div>
@@ -200,7 +198,7 @@ export default function ContactSection() {
                                             onChange={(e) =>
                                                 setFormData({ ...formData, email: e.target.value })
                                             }
-                                            className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-text-primary placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition-colors"
+                                            className="w-full bg-zinc-800/40 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-[#ff6a3d] transition-colors"
                                             placeholder="your@email.com"
                                         />
                                     </div>
@@ -220,7 +218,7 @@ export default function ContactSection() {
                                             onChange={(e) =>
                                                 setFormData({ ...formData, message: e.target.value })
                                             }
-                                            className="w-full bg-zinc-800/50 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-text-primary placeholder-zinc-600 focus:outline-none focus:border-purple-500 transition-colors resize-none"
+                                            className="w-full bg-zinc-800/40 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder-zinc-600 focus:outline-none focus:border-[#ff6a3d] transition-colors resize-none"
                                             placeholder="Your message..."
                                         />
                                     </div>
@@ -244,8 +242,8 @@ export default function ContactSection() {
                                 disabled={status === 'sending'}
                                 className={`w-full py-3.5 font-medium text-sm rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${
                                     status === 'sending'
-                                        ? 'bg-purple-500/20 border border-purple-500/30 text-purple-400'
-                                        : 'bg-zinc-800 border border-zinc-700 text-text-primary hover:border-purple-500/50 hover:bg-zinc-800/80'
+                                        ? 'bg-[#ff6a3d]/20 border border-[#ff6a3d]/30 text-[#ffab8f]'
+                                        : 'bg-zinc-800 border border-zinc-700 text-zinc-100 hover:border-[#ff6a3d]/50 hover:bg-zinc-800/80'
                                 }`}
                             >
                                 {status === 'sending' && (

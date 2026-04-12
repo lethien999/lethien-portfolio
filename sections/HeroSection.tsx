@@ -6,103 +6,110 @@ export default function HeroSection() {
     return (
         <section
             id="hero"
-            className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden"
+            className="section-shell min-h-screen flex items-center pt-24 md:pt-16 relative overflow-hidden"
         >
-            {/* Background gradient orbs */}
-            <div className="bg-gradient-orb w-[600px] h-[600px] bg-purple-500/20 top-[-200px] left-[-200px]" />
-            <div className="bg-gradient-orb w-[400px] h-[400px] bg-blue-500/20 bottom-[-100px] right-[-100px]" />
-            
-            {/* Grid pattern */}
-            <div className="absolute inset-0 bg-grid-pattern" />
+            <div className="split-overlay" />
 
-            <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center relative z-10">
+            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="flex flex-col items-center"
+                    className="relative"
                 >
-                    {/* Status badge */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="mb-6"
+                        className="mb-6 inline-flex"
                     >
-                        <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full">
-                            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-mono text-[#f3e8d8] bg-[#121212]/70 border border-white/15 rounded-full tracking-widest uppercase">
+                            <span className="w-2 h-2 bg-[#2a9d8f] rounded-full animate-pulse" />
                             Open to Work
                         </span>
                     </motion.div>
 
-                    {/* Main heading with gradient */}
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-tight">
-                        <span className="text-text-primary">Hi, I&apos;m </span>
-                        <span className="gradient-text">Thiện</span>
+                    <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[0.95] text-[#121212]">
+                        <span className="block">Hi, I&apos;m</span>
+                        <span className="block gradient-text">Le Anh Thien</span>
                     </h1>
-                    
+
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="mt-6 text-xl sm:text-2xl text-text-secondary font-light max-w-2xl"
+                        className="mt-5 text-base sm:text-xl text-[#303035] max-w-xl leading-relaxed"
                     >
-                        Software Engineer building{' '}
-                        <span className="text-purple-400">reliable</span> and{' '}
-                        <span className="text-blue-400">scalable</span> systems
+                        Software Engineer creating reliable digital products with a clear
+                        backend and infrastructure mindset.
                     </motion.p>
 
                     <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 0.4 }}
-                        className="mt-4 text-base text-text-muted"
+                        className="mt-4 text-sm font-mono uppercase tracking-[0.2em] text-[#45454f]"
                     >
-                        Fullstack Developer → Backend → DevOps & Infrastructure
+                        Fullstack -&gt; Backend -&gt; DevOps
                     </motion.p>
 
-                    {/* Tech highlights */}
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
-                        className="mt-8 flex flex-wrap gap-3 justify-center"
+                        className="mt-8 flex flex-wrap gap-3"
                     >
                         {['React', 'Node.js', 'TypeScript', 'Docker', 'MongoDB'].map((tech) => (
                             <span
                                 key={tech}
-                                className="px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-800/50 border border-zinc-700/50 rounded-md"
+                                className="px-3 py-1.5 text-xs font-semibold text-[#121212] bg-white/60 border border-black/15 rounded-md"
                             >
                                 {tech}
                             </span>
                         ))}
                     </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                        className="mt-10 flex flex-wrap gap-3 sm:gap-4"
+                    >
+                        <a
+                            href="#projects"
+                            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 sm:px-8 py-3.5 bg-[#121212] text-[#f7f2e8] font-semibold text-sm rounded-full hover:bg-[#ff6a3d] hover:text-[#121212] transition-all duration-300"
+                        >
+                            View My Work
+                        </a>
+                        <a
+                            href="#contact"
+                            className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-7 sm:px-8 py-3.5 border border-black/20 text-[#1a1a1d] font-semibold text-sm rounded-full hover:border-[#2a9d8f] hover:text-[#2a9d8f] transition-all duration-300"
+                        >
+                            Let&apos;s Talk
+                        </a>
+                    </motion.div>
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.6 }}
-                    className="mt-12 flex flex-wrap gap-4 justify-center"
+                    initial={{ opacity: 0, x: 26 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
+                    className="relative min-h-[300px] sm:min-h-[360px] lg:min-h-[520px] flex items-center justify-center"
                 >
-                    <a
-                        href="#projects"
-                        className="inline-flex items-center gap-2 px-8 py-3.5 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold text-sm rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 shadow-lg shadow-purple-500/25"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                        </svg>
-                        View My Work
-                    </a>
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 px-8 py-3.5 border border-zinc-700 text-text-secondary font-semibold text-sm rounded-lg hover:border-purple-500/50 hover:text-purple-400 transition-all duration-300"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                        Let&apos;s Talk
-                    </a>
+                    <div className="absolute w-[320px] h-[320px] md:w-[390px] md:h-[390px] rounded-full border border-white/25 float-slow" />
+                    <div className="absolute w-[230px] h-[230px] md:w-[280px] md:h-[280px] rounded-full border border-[#2a9d8f]/70 float-delay" />
+                    <div className="frame-card p-8 md:p-10 text-[#f8f2e8] max-w-sm">
+                        <p className="editorial-label mb-4">Short Intro</p>
+                        <h3 className="font-display text-2xl md:text-3xl mb-3 leading-tight">
+                            Clean code.
+                            <br />
+                            Solid systems.
+                        </h3>
+                        <p className="text-sm text-[#d4d1cb] leading-relaxed">
+                            I enjoy turning ideas into maintainable products through practical
+                            architecture, thoughtful APIs, and shipping discipline.
+                        </p>
+                    </div>
                 </motion.div>
             </div>
         </section>

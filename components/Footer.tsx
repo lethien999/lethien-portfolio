@@ -43,15 +43,11 @@ const socialLinks = [
 
 export default function Footer() {
     return (
-        <footer className="border-t border-zinc-800 py-12 relative overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-500/5 to-transparent pointer-events-none" />
-            
+        <footer className="section-shell border-t border-white/10 py-12 relative overflow-hidden bg-[#111113]">
             <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Logo & Copyright */}
                     <div className="text-center md:text-left">
-                        <a href="#" className="text-2xl font-bold gradient-text">
+                        <a href="#" className="font-script text-3xl text-[#f7f2e8]">
                             LT
                         </a>
                         <p className="text-sm text-zinc-500 mt-2">
@@ -59,7 +55,6 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    {/* Social Links */}
                     <div className="flex items-center gap-4">
                         {socialLinks.map((link, index) => (
                             <motion.a
@@ -71,7 +66,7 @@ export default function Footer() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                                className="p-2.5 text-zinc-500 hover:text-purple-400 bg-zinc-800/50 border border-zinc-800 rounded-lg hover:border-purple-500/30 transition-all duration-300"
+                                className="p-2.5 text-zinc-500 hover:text-[#ff6a3d] bg-zinc-900/50 border border-zinc-800 rounded-lg hover:border-[#ff6a3d]/30 transition-all duration-300"
                                 aria-label={link.label}
                             >
                                 {link.icon}
@@ -79,13 +74,12 @@ export default function Footer() {
                         ))}
                     </div>
 
-                    {/* Tech Stack */}
                     <div className="text-center md:text-right">
                         <p className="text-sm text-zinc-500">
                             Built with{' '}
-                            <span className="text-purple-400">Next.js</span>
+                            <span className="text-[#ff6a3d]">Next.js</span>
                             {' + '}
-                            <span className="text-blue-400">Tailwind CSS</span>
+                            <span className="text-[#2a9d8f]">Tailwind CSS</span>
                         </p>
                         <p className="text-xs text-zinc-600 mt-1">
                             Deployed on{' '}
