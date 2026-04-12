@@ -44,20 +44,20 @@ const roadmapData = [
 
 const statusConfig = {
     current: {
-        border: 'border-purple-500/40',
+        border: 'border-[#ff6a3d]/45',
         bg: 'bg-zinc-900/80',
-        dot: 'bg-purple-400',
-        badge: 'bg-purple-500/10 text-purple-400 border border-purple-500/30',
-        phaseColor: 'text-purple-400',
+        dot: 'bg-[#ff6a3d]',
+        badge: 'bg-[#ff6a3d]/15 text-[#ffab8f] border border-[#ff6a3d]/30',
+        phaseColor: 'text-[#ff9f7f]',
         showBadge: true,
-        glow: 'shadow-lg shadow-purple-500/5',
+        glow: 'shadow-lg shadow-[#ff6a3d]/10',
     },
     next: {
-        border: 'border-blue-500/20',
+        border: 'border-[#2a9d8f]/30',
         bg: 'bg-zinc-900/60',
-        dot: 'bg-blue-400',
-        badge: 'bg-blue-500/10 text-blue-400 border border-blue-500/20',
-        phaseColor: 'text-blue-400',
+        dot: 'bg-[#2a9d8f]',
+        badge: 'bg-[#2a9d8f]/15 text-[#86d8cd] border border-[#2a9d8f]/30',
+        phaseColor: 'text-[#86d8cd]',
         showBadge: false,
         glow: '',
     },
@@ -79,7 +79,7 @@ export default function RoadmapSection() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-text-secondary text-center max-w-2xl mx-auto mb-12"
+                className="text-white mix-blend-difference text-center max-w-2xl mx-auto mb-12"
             >
                 Lộ trình phát triển sự nghiệp với mục tiêu rõ ràng và từng bước cụ thể.
             </motion.p>
@@ -96,7 +96,7 @@ export default function RoadmapSection() {
                                 transition={{ duration: 0.5, delay: index * 0.15 }}
                             >
                                 <div
-                                    className={`rounded-xl border ${cfg.border} ${cfg.bg} ${cfg.glow} p-6 transition-all duration-300 hover:border-purple-500/30`}
+                                    className={`rounded-[0_2rem_0_2rem] border ${cfg.border} ${cfg.bg} ${cfg.glow} p-6 transition-all duration-300 hover:border-[#ff6a3d]/35`}
                                 >
                                     <div className="flex items-start justify-between mb-4 gap-4">
                                         <div>
@@ -105,13 +105,13 @@ export default function RoadmapSection() {
                                             >
                                                 {item.phase}
                                             </span>
-                                            <h3 className="text-lg font-semibold text-text-primary mt-1">
+                                            <h3 className="text-lg font-display font-semibold text-[#f7f2e8] mt-1">
                                                 {item.title}
                                             </h3>
                                         </div>
                                         {cfg.showBadge && (
                                             <span className={`shrink-0 px-3 py-1 text-[10px] font-medium rounded-full ${cfg.badge} flex items-center gap-1.5`}>
-                                                <span className="w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" />
+                                                <span className="w-1.5 h-1.5 bg-[#ff6a3d] rounded-full animate-pulse" />
                                                 IN PROGRESS
                                             </span>
                                         )}
@@ -121,7 +121,7 @@ export default function RoadmapSection() {
                                         {item.items.map((point) => (
                                             <li
                                                 key={point}
-                                                className="text-sm text-text-secondary flex items-start gap-3"
+                                                className="text-sm text-zinc-300 flex items-start gap-3"
                                             >
                                                 <span className={`mt-1.5 shrink-0 w-1.5 h-1.5 rounded-full ${cfg.dot}`} />
                                                 {point}

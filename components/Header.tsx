@@ -24,22 +24,27 @@ export default function Header() {
 
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-            scrolled 
-                ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-zinc-800/50' 
+            scrolled
+                ? 'bg-[#101012]/82 backdrop-blur-xl border-b border-white/10'
                 : 'bg-transparent'
         }`}>
-            <nav className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-4 flex items-center justify-between">
-                <div className="w-8" /> {/* Spacer */}
+            <nav className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-4 sm:py-5 flex items-center justify-between">
+                <a
+                    href="#hero"
+                    className="font-script text-[1.7rem] sm:text-3xl leading-none text-[#f3e8d8] tracking-tight"
+                >
+                    LT
+                </a>
 
-                <ul className="hidden md:flex items-center gap-8">
+                <ul className="hidden md:flex items-center gap-9 absolute left-1/2 -translate-x-1/2">
                     {navLinks.map((link) => (
                         <li key={link.href}>
                             <a
                                 href={link.href}
-                                className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200 relative group"
+                                className="text-sm font-display tracking-wide text-[#f6f0e7]/80 hover:text-[#ff6a3d] transition-colors duration-200 relative group"
                             >
                                 {link.label}
-                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-blue-500 transition-all duration-300 group-hover:w-full" />
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#ff6a3d] transition-all duration-300 group-hover:w-full" />
                             </a>
                         </li>
                     ))}
@@ -50,7 +55,7 @@ export default function Header() {
                         href="https://github.com/lethien999"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-text-secondary hover:text-text-primary transition-colors"
+                        className="p-2 text-[#f6f0e7]/70 hover:text-[#2a9d8f] transition-colors"
                     >
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
@@ -58,7 +63,7 @@ export default function Header() {
                     </a>
                     <a
                         href="#contact"
-                        className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
+                        className="px-4 py-2 text-sm font-semibold bg-[#f5efe5] text-[#121212] rounded-full hover:bg-[#ff6a3d] hover:text-[#121212] transition-all duration-300"
                     >
                         Hire Me
                     </a>
@@ -71,15 +76,15 @@ export default function Header() {
                 >
                     <motion.span
                         animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-                        className="block w-5 h-0.5 bg-text-primary"
+                        className="block w-5 h-0.5 bg-[#f5efe5]"
                     />
                     <motion.span
                         animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                        className="block w-5 h-0.5 bg-text-primary"
+                        className="block w-5 h-0.5 bg-[#f5efe5]"
                     />
                     <motion.span
                         animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-                        className="block w-5 h-0.5 bg-text-primary"
+                        className="block w-5 h-0.5 bg-[#f5efe5]"
                     />
                 </button>
             </nav>
@@ -91,15 +96,15 @@ export default function Header() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="md:hidden overflow-hidden border-b border-zinc-800 bg-[#0a0a0a]/95 backdrop-blur-xl"
+                        className="md:hidden overflow-hidden border-b border-white/10 bg-[#101012]/95 backdrop-blur-xl"
                     >
-                        <ul className="flex flex-col gap-4 px-6 py-4">
+                        <ul className="flex flex-col gap-3 px-5 py-4">
                             {navLinks.map((link) => (
                                 <li key={link.href}>
                                     <a
                                         href={link.href}
                                         onClick={() => setIsOpen(false)}
-                                        className="text-sm text-text-secondary hover:text-text-primary transition-colors"
+                                        className="block py-1.5 text-sm text-[#f5efe5]/80 hover:text-[#ff6a3d] transition-colors"
                                     >
                                         {link.label}
                                     </a>
@@ -109,7 +114,7 @@ export default function Header() {
                                 <a
                                     href="#contact"
                                     onClick={() => setIsOpen(false)}
-                                    className="inline-block px-4 py-2 text-sm font-medium bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-lg"
+                                    className="inline-block px-4 py-2 text-sm font-semibold bg-[#f5efe5] text-[#121212] rounded-full"
                                 >
                                     Hire Me
                                 </a>

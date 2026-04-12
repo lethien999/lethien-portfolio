@@ -4,10 +4,10 @@ interface TechTagProps {
 }
 
 export default function TechTag({ label, variant = 'default' }: TechTagProps) {
-    const baseStyles = 'inline-block px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-200';
+    const baseStyles = 'inline-block px-3 py-1.5 text-xs font-semibold rounded-md transition-all duration-200';
     const variantStyles = {
-        default: 'text-zinc-300 bg-zinc-800/50 border border-zinc-700 hover:border-purple-500/30 hover:text-purple-300',
-        glow: 'text-purple-300 bg-purple-500/10 border border-purple-500/20 hover:bg-purple-500/20',
+        default: 'text-zinc-200 bg-zinc-900/70 border border-white/10 hover:border-[#ff6a3d]/40 hover:text-[#ff6a3d]',
+        glow: 'text-[#fbe2d7] bg-[#ff6a3d]/20 border border-[#ff6a3d]/30 hover:bg-[#ff6a3d]/30',
     };
 
     return (
