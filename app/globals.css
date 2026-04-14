@@ -311,6 +311,21 @@ body {
   opacity: 0.9;
 }
 
+.finder-sidebar button {
+  width: 100%;
+  border: 0;
+  border-radius: 0.52rem;
+  background: transparent;
+  color: #f4f6ff;
+  text-align: left;
+  padding: 0.4rem 0.48rem;
+  cursor: pointer;
+}
+
+.finder-sidebar button:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
 .finder-content h1 {
   margin: 0;
   font-family: var(--font-display), 'SF Pro Display', sans-serif;
@@ -347,6 +362,13 @@ body {
 .quick-stats span {
   font-size: 0.72rem;
   opacity: 0.86;
+}
+
+.finder-list {
+  margin: 0.85rem 0 0;
+  padding-left: 1rem;
+  line-height: 1.65;
+  color: rgba(236, 241, 255, 0.9);
 }
 
 .notes-content h2 {

@@ -10,6 +10,7 @@ type AppIcon = {
 };
 
 type WindowId = 'finder' | 'notes';
+type FinderSection = 'about' | 'roadmap' | 'stack' | 'skills';
 
 type WindowState = {
   id: WindowId;
@@ -46,6 +47,7 @@ const dockApps: AppIcon[] = [
   { id: 'skills', title: 'Skills', emoji: '🛠️' },
   { id: 'contact', title: 'Contact', emoji: '💬' },
   { id: 'github', title: 'GitHub', emoji: '🐙' },
+  { id: 'linkedin', title: 'LinkedIn', emoji: '💼' },
 ];
 
 const launchpadApps: AppIcon[] = [
@@ -54,7 +56,7 @@ const launchpadApps: AppIcon[] = [
   { id: 'resume', title: 'Resume', emoji: '📄' },
   { id: 'stack', title: 'Tech Stack', emoji: '⚙️' },
   { id: 'mail', title: 'Email', emoji: '✉️' },
-  { id: 'github-link', title: 'GitHub', emoji: '🐱' },
+  { id: 'github', title: 'GitHub', emoji: '🐱' },
   { id: 'linkedin', title: 'LinkedIn', emoji: '💼' },
   { id: 'notes', title: 'Notes', emoji: '📝' },
 ];
@@ -128,7 +130,7 @@ const minimizeProfiles: Record<WindowId, MinimizeProfile> = {
 };
 
 export default function Home() {
-  const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState(() => new Date());
   const [showLaunchpad, setShowLaunchpad] = useState(false);
   const [showSpotlight, setShowSpotlight] = useState(false);
   const [showAppleMenu, setShowAppleMenu] = useState(false);
@@ -137,44 +139,9 @@ export default function Home() {
   const [spotlightIndex, setSpotlightIndex] = useState(0);
   const [dockPopId, setDockPopId] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [finderSection, setFinderSection] = useState<FinderSection>('about');
   const [activeAppTitle, setActiveAppTitle] = useState('Finder');
-  const [windows, setWindows] = useState<Record<WindowId, WindowState>>(() => {
-    if (typeof window === 'undefined') {
-      return initialWindows;
-    }
-
-    const saved = window.localStorage.getItem(WINDOW_STORAGE_KEY);
-    if (!saved) {
-      return initialWindows;
-    }
-
-    try {
-      const parsed = JSON.parse(saved) as Partial<Record<WindowId, Partial<WindowState>>>;
-      return {
-        finder: {
-          ...initialWindows.finder,
-          ...parsed.finder,
-          id: 'finder',
-          title: 'Finder',
-          isMinimizing: false,
-          minimizeDx: 0,
-          minimizeDy: 0,
-        },
-        notes: {
-          ...initialWindows.notes,
-          ...parsed.notes,
-          id: 'notes',
-          title: 'Notes',
-          isMinimizing: false,
-          minimizeDx: 0,
-          minimizeDy: 0,
-        },
-      };
-    } catch {
-      window.localStorage.removeItem(WINDOW_STORAGE_KEY);
-      return initialWindows;
-    }
-  });
+  const [windows, setWindows] = useState<Record<WindowId, WindowState>>(initialWindows);
   const [resizing, setResizing] = useState<{
     id: WindowId;
     startX: number;
@@ -197,6 +164,42 @@ export default function Home() {
   useEffect(() => {
     const timer = window.setInterval(() => setNow(new Date()), 1000);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem(WINDOW_STORAGE_KEY);
+    if (!saved) {
+      return;
+    }
+
+    try {
+      const parsed = JSON.parse(saved) as Partial<Record<WindowId, Partial<WindowState>>>;
+      const timer = window.setTimeout(() => {
+        setWindows({
+          finder: {
+            ...initialWindows.finder,
+            ...parsed.finder,
+            id: 'finder',
+            title: 'Finder',
+            isMinimizing: false,
+            minimizeDx: 0,
+            minimizeDy: 0,
+          },
+          notes: {
+            ...initialWindows.notes,
+            ...parsed.notes,
+            id: 'notes',
+            title: 'Notes',
+            isMinimizing: false,
+            minimizeDx: 0,
+            minimizeDy: 0,
+          },
+        });
+      }, 0);
+      return () => window.clearTimeout(timer);
+    } catch {
+      window.localStorage.removeItem(WINDOW_STORAGE_KEY);
+    }
   }, []);
 
   useEffect(() => {
@@ -323,7 +326,7 @@ export default function Home() {
     }
 
     if (id === 'linkedin') {
-      window.open('https://www.linkedin.com', '_blank', 'noopener,noreferrer');
+      window.open('https://www.linkedin.com/in/lethien999', '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -333,8 +336,8 @@ export default function Home() {
     }
 
     if (id === 'skills') {
-      setShowSpotlight(true);
-      setSpotlightQuery('skills');
+      setFinderSection('skills');
+      openWindow('finder');
       return;
     }
 
@@ -374,6 +377,11 @@ export default function Home() {
     playFx('click');
     window.setTimeout(() => setDockPopId(''), 340);
     setTimeout(() => bringToFront(id), 0);
+  };
+
+  const openFinderSection = (section: FinderSection) => {
+    setFinderSection(section);
+    openWindow('finder');
   };
 
   const closeWindow = (id: WindowId) => {
@@ -442,6 +450,34 @@ export default function Home() {
   };
 
   const launchById = (id: string) => {
+    if (id === 'about') {
+      openFinderSection('about');
+      setShowSpotlight(false);
+      setSpotlightIndex(0);
+      return;
+    }
+
+    if (id === 'roadmap') {
+      openFinderSection('roadmap');
+      setShowSpotlight(false);
+      setSpotlightIndex(0);
+      return;
+    }
+
+    if (id === 'stack') {
+      openFinderSection('stack');
+      setShowSpotlight(false);
+      setSpotlightIndex(0);
+      return;
+    }
+
+    if (id === 'skills') {
+      openFinderSection('skills');
+      setShowSpotlight(false);
+      setSpotlightIndex(0);
+      return;
+    }
+
     if (id === 'finder' || id === 'notes') {
       openWindow(id);
       setShowSpotlight(false);
@@ -548,8 +584,8 @@ export default function Home() {
           >
             Control
           </button>
-          <span>{dateLabel}</span>
-          <span>{timeLabel}</span>
+          <span suppressHydrationWarning>{dateLabel}</span>
+          <span suppressHydrationWarning>{timeLabel}</span>
         </div>
 
         {showAppleMenu && (
@@ -721,32 +757,101 @@ export default function Home() {
                     <div className="finder-sidebar">
                       <h3>Favorites</h3>
                       <ul>
-                        <li>About</li>
-                        <li>Projects</li>
-                        <li>Roadmap</li>
-                        <li>Contact</li>
+                        <li>
+                          <button type="button" onClick={() => setFinderSection('about')}>
+                            About Me
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" onClick={() => openExternal('projects')}>
+                            Projects
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" onClick={() => setFinderSection('roadmap')}>
+                            Roadmap
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" onClick={() => setFinderSection('stack')}>
+                            Tech Stack
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" onClick={() => setFinderSection('skills')}>
+                            Skills
+                          </button>
+                        </li>
+                        <li>
+                          <button type="button" onClick={() => openExternal('contact')}>
+                            Contact
+                          </button>
+                        </li>
                       </ul>
                     </div>
                     <div className="finder-content">
-                      <h1>Le Anh Thien</h1>
-                      <p>
-                        Backend-focused Software Engineer. I build reliable products with
-                        clean architecture, automation mindset, and production discipline.
-                      </p>
-                      <div className="quick-stats">
-                        <div>
-                          <strong>3+</strong>
-                          <span>Years Coding</span>
-                        </div>
-                        <div>
-                          <strong>10+</strong>
-                          <span>Projects</span>
-                        </div>
-                        <div>
-                          <strong>24/7</strong>
-                          <span>Learning Mode</span>
-                        </div>
-                      </div>
+                      {finderSection === 'about' && (
+                        <>
+                          <h1>Le Anh Thien</h1>
+                          <p>
+                            Backend-focused Software Engineer. I build reliable products with
+                            clean architecture, automation mindset, and production discipline.
+                          </p>
+                          <div className="quick-stats">
+                            <div>
+                              <strong>3+</strong>
+                              <span>Years Coding</span>
+                            </div>
+                            <div>
+                              <strong>10+</strong>
+                              <span>Projects</span>
+                            </div>
+                            <div>
+                              <strong>24/7</strong>
+                              <span>Learning Mode</span>
+                            </div>
+                          </div>
+                        </>
+                      )}
+
+                      {finderSection === 'roadmap' && (
+                        <>
+                          <h1>Roadmap</h1>
+                          <p>Current growth plan for 2026 and beyond.</p>
+                          <ul className="finder-list">
+                            <li>Deepen backend architecture with Node.js + TypeScript.</li>
+                            <li>Practice system design, scalability, and observability.</li>
+                            <li>Build end-to-end products with Docker and CI/CD pipelines.</li>
+                            <li>Contribute to open-source projects consistently.</li>
+                          </ul>
+                        </>
+                      )}
+
+                      {finderSection === 'stack' && (
+                        <>
+                          <h1>Tech Stack</h1>
+                          <p>Core tools used in my current workflow.</p>
+                          <ul className="finder-list">
+                            <li>Languages: TypeScript, JavaScript, Python</li>
+                            <li>Backend: Node.js, Express, REST API design</li>
+                            <li>Frontend: React, Next.js, Tailwind CSS</li>
+                            <li>DevOps: Docker, GitHub Actions, Linux tooling</li>
+                          </ul>
+                        </>
+                      )}
+
+                      {finderSection === 'skills' && (
+                        <>
+                          <h1>Skills</h1>
+                          <p>Practical capabilities applied in real projects.</p>
+                          <ul className="finder-list">
+                            <li>API design, validation, and error handling strategy</li>
+                            <li>Database modeling, query optimization, and indexing basics</li>
+                            <li>Testing mindset: unit/integration and regression checks</li>
+                            <li>Team workflow: code review, issue tracking, and documentation</li>
+                          </ul>
+                        </>
+                      )}
                     </div>
                   </div>
                 )}
